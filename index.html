@@ -106,8 +106,8 @@
                             <datalist id="datalist-us"></datalist>
                         </div>
                         <div class="ficha__linha-de-localizacao__col ficha__linha-de-localizacao__col--no-margin-r">
-                            <label for=input-mes-ano>Mês:</label>
-                            <input id=input-mes-ano list="datalist-meses" class="ficha__campo-de-mes input-nao-celular --border-b --fw-700">
+                            <label for=input-mes-ano>Mês/Ano:</label>
+                            <input id=input-mes-ano list="datalist-mes-ano" class="ficha__campo-de-mes input-nao-celular --border-b --fw-700">
                             <datalist id=datalist-mes-ano></datalist>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                         <input type="number" min="0" data-total="l5-c1-a-c8" data-totaloutput="l5-c9" class="--border-r --border-b-thick">
                         <input type="number" min="0" data-total="l5-c1-a-c8" data-totaloutput="l5-c9" class="--border-r --border-b-thick">
                         <input type="number" min="0" data-total="l5-c1-a-c8" data-totaloutput="l5-c9" class="--border-r --border-b-thick">
-                        <input type="number" min="0" readonly class="l5-c9 --border-b --border-r-thick">
+                        <input type="number" min="0" readonly class="l5-c9 --border-b --border-r-thick --border-b-thick">
                     </div>
                     <div class="ficha__body__header ficha__body__header--margin-top --fw-700">
                         <span class="ficha__header__nota --display-flex-xy-center "><em>Nota: Indicador 6 - 7 são reportados somente nas US com um sitema <br>electrónico de seguimento de pacientes</em></span>
@@ -277,9 +277,9 @@
                     </div>
                     <div class="ficha__body__header ficha__body__header--seccao-3 ficha__body__header--margin-top --fw-700">
                         <span class="ficha__header__nota --display-flex-xy-center "><em>Nota: Indicador 8 - 19 são reportados somente nas US com um sitema <br>electrónico de seguimento de pacientes</em></span>
-                        <div class="ficha__header__grade-de-idade-e-sexo ficha__header__col--margin-l --border-t-thick --border-r --border-b --border-l-thick">
-                            <span class="body__header__celula-de-idade --display-flex-xy-center --border-b">Novos inícios <br>de TARV</span>     
-                            <span class="--display-flex-xy-center --border-r">&lt;15 <br>anos</span>
+                        <div class="ficha__header__grade-de-idade-e-sexo ficha__header__col--margin-l --border-t-thick --border-r --border-b">
+                            <span class="body__header__celula-de-idade --display-flex-xy-center --border-b --border-l-thick">Novos inícios <br>de TARV</span>     
+                            <span class="--display-flex-xy-center --border-r --border-l-thick">&lt;15 <br>anos</span>
                             <span class="--display-flex-xy-center">15+ <br>anos</span>
                         </div>
                         <div class="ficha__header__grade-de-idade-e-sexo --border-t-thick --border-r --border-b">
@@ -292,10 +292,10 @@
                             <span class="--display-flex-xy-center --border-r">&lt;15 <br>anos</span>
                             <span class="--display-flex-xy-center">15+ <br>anos</span>
                         </div>
-                        <div class="ficha__header__col-mulheres-gravidas --border-t-thick --border-b --border-r">
+                        <div class="ficha__header__col-mulheres-gravidas --border-t-thick --border-b --border-r-thick">
                             <span class="body__header__celula-de-idade --display-flex-xy-center">Mulheres&nbsp;grávidas HIV+</span>
                         </div>
-                        <div class="ficha__header__grade-de-idade-e-sexo ficha__header__grade-de-idade-e-sexo--margin-l --border-thick">
+                        <div class="ficha__header_-col-total-em-seg ficha__header__grade-de-idade-e-sexo ficha__header__grade-de-idade-e-sexo--margin-l --border-t-thick --border-r-thick --border-b --border-l-thick ">
                             <span class="body__header__celula-de-idade --display-flex-xy-center --border-b">Total em <br>Seguimento de <br>DAH</span>     
                             <span class="--display-flex-xy-center --border-r">&lt;15 <br>anos</span>
                             <span class="--display-flex-xy-center">15+ <br>anos</span>
@@ -508,12 +508,10 @@
             </div>
             <div class="reference --no-print">
                 <div class="layout-row layout-row--of-reference">
-                    <span class="reference__label">Indicador:</span> 
+                    <span class="reference__label">Linha:</span> 
                     <output class="reference__output reference__output--indicador --display-flex-y-center"></output>
-                    <span class="reference__label">Faixa etária:</span> 
-                    <output class="reference__output reference__output--idade --display-flex-xy-center --fw-700"></output>
-                    <span class="reference__label">Sexo:</span> 
-                    <output class="reference__output reference__output--sexo --display-flex-xy-center --fw-700"></output>
+                    <span class="reference__label">Coluna:</span> 
+                    <output class="reference__output reference__output--idade --display-flex-y-center"></output>
                 </div>
             </div>
         </main>
@@ -533,8 +531,7 @@
                 </div>
             </div>
             <div class="dialog-box-ir-para --display-flex-y-center">
-                <input type=search class=dialog-box-ir-para__input-linha max=63 placeholder="Referência da linha (ex.: B.10)">
-                <button class="dialog-box-ir-para__btn dialog-box-ir-para__btn--ir" title="Ir para a linha">Ir</button>
+                <input type=number min=1 class=dialog-box-ir-para__input-linha max=53 placeholder="Ir para a linha (número da linha)">
                 <button class="dialog-box-ir-para__btn dialog-box-ir-para__btn--fechar" title=Fechar>&times;</button>
             </div>
             <div class="dialog-box-esvaziar-ficha">
@@ -563,31 +560,27 @@
                     </li>
                     <li>
                         <input type=checkbox checked id="checkbox-us" data-for=input-us>
-                        <label for=checkbox-us>Unidade Sanitária</label>
+                        <label for=checkbox-us>US</label>
                     </li>
                     <li>
-                        <input type=checkbox id=checkbox-mes checked data-for=input-mes>
-                        <label for=checkbox-mes>Mês</label>
-                    </li>
-                    <li>
-                        <input type=checkbox id=checkbox-ano checked data-for=input-ano>
-                        <label for=checkbox-ano>Ano</label>
-                    </li>
-                    <li>
-                        <input type=checkbox checked id="checkbox-nid" data-for=input-nid>
-                        <label for=checkbox-nid>NID da Unidade Sanitária</label>
+                        <input type=checkbox id=checkbox-mes checked data-for=input-mes-ano>
+                        <label for=checkbox-mes>Mês/Ano</label>
                     </li>
                     <li>
                         <input type=checkbox id=checkbox-nome checked data-for=input-nome>
                         <label for=checkbox-nome>Nome</label>
                     </li>
                     <li>
-                        <input type=checkbox id=checkbox-assinatura checked data-for=input-assinatura>
-                        <label for=checkbox-assinatura>Nome (Assinatura)</label>
+                        <input type=checkbox id=checkbox-data checked data-for=input-data>
+                        <label for=checkbox-data>Data de Elaboração</label>
                     </li>
                     <li>
-                        <input type=checkbox id=checkbox-data checked data-for=input-data>
-                        <label for=checkbox-data>Data</label>
+                        <input type=checkbox id=checkbox-revisor checked data-for=input-assinatura>
+                        <label for=checkbox-revisor>Assinatura do Revisor</label>
+                    </li>
+                    <li>
+                        <input type=checkbox id=checkbox-data-de-revisao checked data-for=input-data-da-revisao>
+                        <label for=checkbox-data-de-revisao>Data de Revisão</label>
                     </li>
                     <li>
                         <input type=checkbox id=checkbox-obs checked data-for=input-obs>
@@ -646,14 +639,14 @@
                 </details>
                 <details class="artigo__details">
                      <summary class="details__summary">Ir para a linha...</summary>
-                    <p>Abre um campo no qual pode digitar um número de linha no formato <b>LETRA.NÚMERO</b> (ex.: <b>B.10</b> ou <b>B10</b>, o ponto é facultativo) e, uma vez digitado o número, a página rola até a linha correspondente ao número.</p>
+                    <p>Abre um campo no qual pode digitar um número de linha no intervalo de 1 à 19 e, uma vez digitado o número, a página rola até a linha correspondente ao número.</p>
                 </details>
                 <details class="artigo__details">
                     <summary class="details__summary">Esvaziar ficha</summary>
                     <p>Comando para limpar parcial ou completamente a ficha após confirmação da acção na caixa de diálogo subsequente.</p>
                     <figure class="details__moldura details__moldura--margin-l">
                         <img src="imagens/caixa-de-dialogo-para-esvaziamento-da-ficha.png" alt="Caixa de diálogo para esvaziamento da ficha" class="artigo__img"/>
-                        <figcaption class="details__moldura__legenda"><b>Legenda:</b> Caixa de diálogo para esvaziamento da ficha. Neste caso, os campos de <b>Província, Distrito, Unidade Sanitária e NID</b> seriam preservados (por ter suas checkboxes desmarcadas). Todos os outros cujas "checkboxes" estão marcadas seriam esvaziados.</figcaption>
+                        <figcaption class="details__moldura__legenda"><b>Legenda:</b> Caixa de diálogo para esvaziamento da ficha. Neste caso, os campos de <b>Província, Distrito e US</b> seriam preservados (por ter suas checkboxes desmarcadas). Todos os outros cujas "checkboxes" estão marcadas seriam esvaziados.</figcaption>
                     </figure>
                 </details>
                 <details class="artigo__details artigo__details--salvar-ficha-como-pdf">
@@ -681,7 +674,7 @@
                     <summary class="details__summary">Algumas células ficaram vermelhas</summary>
                     <p>Uma célula adopta um fundo vermelho como sinal de alerta para indicar que o valor contido nela, excedeu a largura fixa da célula e, por isso, os últimos algarismos estão omissos, ou seja, estão fora da área visível da célula.</p>
                 </details>
-                <p class="artigo-ajuda__p--contactar-suporte">Se os tópicos acima não cobrem as suas dúvidas, pode ainda solicitar suporte ao Desenvolvedor pelos seguintes endereços: <a href="mailto:quinamine.aderitofelix@gmail.com?subject=Totalizador%20de%20Resumo%20Mensal%20de%20HIV%2FSIDA">Email</a> e/ou <a href="https://wa.me/258846709901/?text=Olá%2C+Quinamine!+Sobre+o+*totalizador+de+resumo+mensal+de+HIV%2FSIDA*%2C+tenho+a+seguinte+dúvida%3A%20">WhatsApp</a>.</p>
+                <p class="artigo-ajuda__p--contactar-suporte">Se os tópicos acima não cobrem as suas dúvidas, pode ainda solicitar suporte ao Desenvolvedor pelos seguintes endereços: <a href="mailto:quinamine.aderitofelix@gmail.com?subject=Totalizador%20de%20Resumo%20Mensal%20de%20Doença%20Avançada%20por%20HIV">Email</a> e/ou <a href="https://wa.me/258846709901/?text=Olá%2C+Quinamine!+Sobre+o+*totalizador+de+resumo+mensal+de+Doença+Avançada+por+HIV*%2C+tenho+a+seguinte+dúvida%3A%20">WhatsApp</a>.</p>
                 <button class="artigo__btn-x artigo__btn-x--fechar-ajuda" title="Fechar">&times;</button>
             </article>
         </section>
@@ -690,6 +683,8 @@
                 <nav class=footer__nav>
                     <h4 class="footer__nav__title">Hiperligações para outros serviços afins</h4>
                     <ul>
+                        <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-doenca-avancada-por-hiv/index.html class="footer__nav__link">Totalizador de Resumo Mensal de Doença Avançada por HIV</a></li>
+                        <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-prep/index.html class="footer__nav__link">Totalizador de Resumo Mensal de PrEP</a></li>
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-rastreio-e-investigacao-de-tb-contactos-e-inicio-de-tpt/index.html class="footer__nav__link">Totalizador de Resumo Mensal de Rastreio e Investigação de TB, Contactos e Início de TPT</a></li>
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-vigilancia-e-notificacao-de-tb-resistente/index.html class="footer__nav__link">Totalizador Resumo Mensal de Vigilância e Notificação de TB Resistente</a></li>
                         <li><a href=https://quinamine.github.io/ficha-de-resumo-trimestral-de-avaliacao-de-resultados-intermediarios-de-tto-de-tb-resistente/index.html class="footer__nav__link">Ficha de Resumo Trimestral de Avaliação de Resultados Intermediários de Tratamento de TB Resistente</a></li>

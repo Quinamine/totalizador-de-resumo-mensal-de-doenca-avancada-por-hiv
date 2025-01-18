@@ -193,7 +193,7 @@
     border-radius: 20px;
     padding: 5px;
     display: flex;
-    min-width: var(--layout-width);
+    min-width: 916px;
     font-size: var(--input-font-size);
 }
 @media print {
@@ -314,7 +314,7 @@
 }
 .layout-row--of-reference {
     display: grid;
-    grid-template-columns: 53px 500px 68px 85px 33px 35px;
+    grid-template-columns: 33px 500px 45px 250px;
     align-items: center;
     min-height: 28px;
     font-size: 12px;
@@ -334,7 +334,7 @@
 }
 @media screen and (max-width: 810px) {
     .layout-row--of-reference {
-        grid-template-columns: 1fr 75px 20px;
+        grid-template-columns: 2fr 1fr;
         grid-column-gap: 3px;
         padding-left: 0;
         padding-right: 0;

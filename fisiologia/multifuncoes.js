@@ -1,5 +1,5 @@
 "use strict"
-var keyPrefix = "trmdah";
+var keyPrefix = "trmprep";
 function desfoqueDoFundo(accao) {
     const desfoque = document.querySelector(".desfoque");
     accao === "desfocar" ? 
@@ -24,23 +24,18 @@ function alertarSobre(msg) {
     dialogBoxDefault.classList.add("--open");
 }
 function destacarCelulasComConteudoOmisso() {
-    const celulas = document.querySelectorAll("[data-totalgeraleixox], [readonly], .grid-extra__input");
+    const celulas = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
     let celulasSaturadas = 0;
     for(const c of celulas) {
-        c.classList.remove("input--font-small");
+        c.classList.remove("input--fs-small");
+        c.classList.remove("input--fs-smaller");
         c.classList.remove("input--bg-color-danger");
-        if(c.clientWidth < 55) {
-            if(c.value.length === 7) {
-                c.classList.add("input--font-small");
-            } else if(c.value.length > 7) {
-                c.classList.add("input--bg-color-danger");
-                celulasSaturadas++;
-            }
-        } else if(c.clientWidth < 102 && c.value.length > 12) {
+        if(c.value.length > 4 && c.value.length < 6) {
+            c.classList.add("input--fs-small");
+        } else if(c.value.length === 6) {
+            c.classList.add("input--fs-smaller");
+        } else if(c.value.length > 6) {
             c.classList.add("input--bg-color-danger");
-            celulasSaturadas++;
-        } else if (c.clientWidth < 204 && c.value.length > 25) {
-            c.classList.add("input--bg-color-danger")
             celulasSaturadas++;
         }
     }
@@ -54,7 +49,7 @@ function destacarCelulasComConteudoOmisso() {
     }  
 }
 function removerDestaqueDeRedCells() {
-    const celulas = document.querySelectorAll("[data-totalgeraleixox], .grid-extra__input, [readonly]");
+    const celulas = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
     for (const c of celulas) c.classList.remove("input--bg-color-danger");
 }
 const aqd = {
@@ -71,7 +66,7 @@ const aqd = {
 function actualizarAnoDeCopyright() {
     const tempo = new Date();
     let anoActual = tempo.getFullYear();
-    if(anoActual < 2024) anoActual = 2024;
+    if(anoActual < 2025) anoActual = 2025;
     const currentYearOutput = document.querySelector(".footer__current-year");
     currentYearOutput.textContent = anoActual;
 }
@@ -81,13 +76,6 @@ function animarCaixaDeDialogo(event) {
         event === "mousedown" ? dialogBox.classList.add("--mexer") 
         : dialogBox.classList.remove("--mexer");
     }
-}
-function clonarHeader() {
-    const header = document.querySelector(".ficha__body__header");
-    const previousSibling = document.querySelector(".grid-dos-as");
-    const newNode = header.cloneNode(true);
-    newNode.classList.add("body__header-2");
-    previousSibling.insertAdjacentElement("afterEnd", newNode)
 }
 function fecharTopoPropaganda(topoPropaganda) {
     const body = document.querySelector("#body");
@@ -112,9 +100,17 @@ window.addEventListener("load", () => {
         const readonlyInputsMsg = "Os totais estão inacessíveis para assegurar que não sejam modificados.";
         alertarSobre(readonlyInputsMsg);
     }));
-    const inputsCelulares = document.querySelectorAll("[data-totalgeraleixox], .grid-extra__input");
+    const inputsCelulares = document.querySelectorAll("[data-total], .input-celular--focus");
     inputsCelulares.forEach (inputCelular => inputCelular.addEventListener("input", destacarCelulasComConteudoOmisso));
     destacarCelulasComConteudoOmisso();
+    // Retornar mensagem de N/A se clicado nas células trancadas
+    const celulasNaoAplicaveis = document.querySelectorAll(".input--bg-color-dark");  
+    celulasNaoAplicaveis.forEach( celula => {
+        celula.addEventListener("click", () => {
+            const msg = `O indicador não é aplicável para ${celula.dataset.faixaetaria}.`;
+            alertarSobre(msg);
+        });
+    })
     aqd.mostrarAviso();
     const dialogBoxAQD__btn = document.querySelector(".dialog-box-default__btn--aqd");
     dialogBoxAQD__btn.addEventListener("click", aqd.salvarCiencia);
@@ -123,8 +119,6 @@ window.addEventListener("load", () => {
     const desfoque = document.querySelector(".desfoque");
     desfoque.addEventListener("mousedown", event => animarCaixaDeDialogo(event.type));
     desfoque.addEventListener("mouseup", event => animarCaixaDeDialogo(event.type));
-    // Clonar Elemento (Header do body)
-    clonarHeader();
     // Fechar Topo Propaganda 
     const btnXDetopoProgaganda = document.querySelectorAll(".topo-propaganda__btn");
     btnXDetopoProgaganda.forEach(btn => {

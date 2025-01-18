@@ -16,7 +16,7 @@ const menu = {
         return {
             dialogBox: document.querySelector(".dialog-box-ir-para"),
             inputNumLinha: document.querySelector(".dialog-box-ir-para__input-linha"),
-            numerosDeLinha: document.querySelectorAll(".ficha__col-de-linhas span"),
+            numerosDeLinha: document.querySelectorAll(".ficha__body__numero-de-linha"),
             abrirDialogBox() { 
                 menu.irParaLinha().dialogBox.classList.add("--open");
                 menu.irParaLinha().inputNumLinha.value = "";
@@ -28,16 +28,15 @@ const menu = {
             },
             goToLn(numLinha) {
                 this.removeLnHighlight(); 
-                numLinha = formatarString(numLinha)
                 let nL = this.numerosDeLinha;
                 let numLinhaMatches = false;
                 for(let i = 0; i < nL.length; i++) {
-                    if(formatarString(nL[i].textContent) === numLinha) {
+                    if(nL[i].textContent === numLinha) {
                         numLinhaMatches = true;
                         let newIndex = i;
-                        if(window.innerWidth > 998) newIndex -= 2;
-                        i > 2 ? nL[newIndex].parentElement.scrollIntoView() : document.body.scrollIntoView(); 
-                        this.highlightLnFound(nL[i].parentElement);        
+                        if(window.innerWidth > 1304) newIndex -= 3;
+                        i > 3 ? nL[newIndex].scrollIntoView() : document.body.scrollIntoView(); 
+                        this.highlightLnFound(nL[i]);      
                     }
                 }  
                 if(!numLinhaMatches) {
@@ -47,11 +46,11 @@ const menu = {
             },
             highlightLnFound(lnFound) {
                 this.removeLnHighlight();
-                lnFound.classList.add("ficha__num-de-linha", "--highlight");
+                lnFound.parentElement.classList.add("--highlight");
             },
             removeLnHighlight() {
                 for(const num of this.numerosDeLinha) {
-                    num.parentElement.classList.remove("ficha__num-de-linha", "--highlight");
+                    num.parentElement.classList.remove("--highlight");
                 }
             }
         }
@@ -60,7 +59,7 @@ const menu = {
         return {  
             dialogBox: document.querySelector(".dialog-box-esvaziar-ficha"),
             abrirDialogBox() { 
-                const inputsDaFicha = document.querySelectorAll("[data-totalgeraleixox], [readonly], .grid-extra__input, .input-nao-celular");
+                const inputsDaFicha = document.querySelectorAll(".ficha input");
                 const campoDeObs = document.querySelector(".obs__input");
                 let inputFilled = 0;
                 campoDeObs.textContent.length > 0 && (inputFilled = 1);
@@ -80,7 +79,7 @@ const menu = {
                 desfoqueDoFundo("focar");
             },
             confirmar() {
-                const inputsCelulares  = document.querySelectorAll("[data-totalgeraleixox], [readonly], .grid-extra__input");
+                const inputsCelulares  = document.querySelectorAll(".ficha input");
                 const checkboxesParaInputsNaoCelulares = document.querySelectorAll("[data-for]");
                 for (let i = 0; i < inputsCelulares.length; i++) {
                     inputsCelulares[i].value = "";
@@ -147,13 +146,10 @@ function eventos() {
     btnAbrirIrPara.addEventListener("click", menu.irParaLinha().abrirDialogBox);
     const btnFecharIrPara = document.querySelector(".dialog-box-ir-para__btn--fechar");
     btnFecharIrPara.addEventListener("click", menu.irParaLinha().fecharDialogBox);
-    const irPara__btnIr = document.querySelector(".dialog-box-ir-para__btn--ir");
-    irPara__btnIr.addEventListener("click", () => { 
-        const inputNumLinha = document.querySelector(".dialog-box-ir-para__input-linha");
-        if(inputNumLinha.value === "") {
-            alertarSobre("Por favor, preencha o campo com a referência da linha para a qual deseja rolar.");
-            inputNumLinha.focus();
-        } else {menu.irParaLinha().goToLn(inputNumLinha.value);}
+    const inputNumLinha = document.querySelector(".dialog-box-ir-para__input-linha");
+    inputNumLinha.addEventListener("input", () => {
+        inputNumLinha.value !== "" ? menu.irParaLinha().goToLn(inputNumLinha.value) 
+        : menu.irParaLinha().removeLnHighlight();
     });
     // Fechar dialog-boxes-default
     const btnsFecharDialogBox = document.querySelectorAll(".dialog-box-default__btn");

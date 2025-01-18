@@ -740,49 +740,23 @@ function listarUSs() {
         }
     }
 }
-function preencherNid() {
-    const inputNid = document.getElementById("input-nid");
-    const inputProvincia = document.getElementById("input-provincia");
-    const inputDistrito = document.getElementById("input-distrito");
-    const inputUs = document.getElementById("input-us");
-    let us = document.getElementById("input-us").value;
-    us = formatarString(us);
-    let provDefinido = formatarString(inputProvincia.value);
-    let distDefindo = formatarString(inputDistrito.value); 
-    let usDefinida = formatarString(inputUs.value);
-    let nidUs = "";
-    if(notEmpty(inputProvincia, inputDistrito, inputUs)) {
-        const USs = moz[provDefinido][distDefindo].us;
-        const codigos = moz[provDefinido][distDefindo].codigos;
-        for (let i = 0; i < USs.length; i++) {
-            if(usDefinida === formatarString(USs[i])) {
-                nidUs = codigos[i];
-                inputNid.value = nidUs;
-            } 
-        }
-    } else if (!notEmpty(inputUs)) inputNid.value = nidUs; 
-}
 function sugerirMesEanoActuais() {
-    const mesDatalist = document.getElementById("datalist-meses");
-    const anoDatalist = document.getElementById("datalist-ano");
+    const mesDatalist = document.getElementById("datalist-mes-ano");
     const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
     const tempo = new Date();
     let mesIndex = tempo.getMonth();
     let anoActual = tempo.getFullYear();
-    mesDatalist.innerHTML = `<option value="${meses[mesIndex]}"></option>`;
-    anoDatalist.innerHTML = `<option value="${anoActual}"></option>`;
+
+    mesDatalist.innerHTML = `<option value="${meses[mesIndex]}/${anoActual}"></option>`;
 }
 window.addEventListener("load", () => {
     listarProvincias();
     listarDistritos();
     listarUSs();
-    preencherNid();
     sugerirMesEanoActuais();
     const inputProv = document.getElementById("input-provincia");
-    inputProv.addEventListener("input", () => listarDistritos());
+    inputProv.addEventListener("input", listarDistritos);
     const inputDistrito = document.getElementById("input-distrito");
-    inputDistrito.addEventListener("input", () => listarUSs());
-    const inputUs = document.getElementById("input-us");
-    inputUs.addEventListener("input", () => preencherNid());
+    inputDistrito.addEventListener("input", listarUSs);
 });
 
