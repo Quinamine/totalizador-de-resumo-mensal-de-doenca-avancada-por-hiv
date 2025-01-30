@@ -1,5 +1,5 @@
 "use strict"
-var keyPrefix = "trmprep";
+var keyPrefix = "trmdah";
 function desfoqueDoFundo(accao) {
     const desfoque = document.querySelector(".desfoque");
     accao === "desfocar" ? 
@@ -27,16 +27,20 @@ function destacarCelulasComConteudoOmisso() {
     const celulas = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
     let celulasSaturadas = 0;
     for(const c of celulas) {
-        c.classList.remove("input--fs-small");
-        c.classList.remove("input--fs-smaller");
+        c.classList.remove("input--font-small");
         c.classList.remove("input--bg-color-danger");
-        if(c.value.length > 4 && c.value.length < 6) {
-            c.classList.add("input--fs-small");
-        } else if(c.value.length === 6) {
-            c.classList.add("input--fs-smaller");
-        } else if(c.value.length > 6) {
-            c.classList.add("input--bg-color-danger");
-            celulasSaturadas++;
+        if(c.clientWidth < 50) {
+            if(c.value.length === 6) {
+                c.classList.add("input--font-small");
+            } else if(c.value.length > 6) {
+                c.classList.add("input--bg-color-danger");
+                celulasSaturadas++;
+            }
+        } else {
+            if(c.value.length > 12) {
+                c.classList.add("input--bg-color-danger");
+                celulasSaturadas++;
+            }
         }
     }
     if(celulasSaturadas > 0) {
