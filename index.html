@@ -22,6 +22,15 @@
         <script src="fisiologia/multifuncoes.js"></script>
         <script src="fisiologia/db.js"></script>
         <script src="fisiologia/referencia.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD9JGT2J0W"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KD9JGT2J0W');
+        </script>
         <noscript>O seu navegador está com o JavaScript desabilitado e isso bloqueia as funcionalidades do totalizador. Habilite-o nas configurações do navegador e recarregue a página.</noscript>
     </head>
      <body id="body" class="body-com-topo-propaganda" ontouchstart="">
@@ -121,7 +130,6 @@
                         <div class="--display-flex-xy-center --border-t-thick --border-r --border-b">
                             <span>5-9</span>
                         </div>
-    
                         <div class="ficha__header__grade-de-idade-e-sexo --border-t-thick --border-r --border-b">
                             <span class="body__header__celula-de-idade --display-flex-xy-center --border-b">10-14</span>     
                             <span class="--display-flex-xy-center --border-r">M</span>
@@ -142,8 +150,23 @@
                         </div>
                     </div>
                     <div class="ficha__body__row">
-                        <span class="ficha__body__numero-de-linha">1</span>
+                        <span class="ficha__body__numero-de-linha">0</span>
                         <div class="ficha__container-de-indicador --display-flex-y-center --border">
+                            <span>Número total de activos com DAH em TARV, até o fim de mês anterior</span>
+                        </div>
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-l-thick --border-r  --border-b ficha__header__col--margin-l">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" data-total="l0-c1-a-c8" data-totaloutput="l0-c9" class="--border-r --border-b">
+                        <input type="number" min="0" readonly class="l0-c9 --border-b --border-r-thick">
+                    </div>
+                    <div class="ficha__body__row">
+                        <span class="ficha__body__numero-de-linha">1</span>
+                        <div class="ficha__container-de-indicador --display-flex-y-center  --border-l --border-r --border-b">
                             <span>Número de utentes novos inícios em TARV que iniciaram seguimento <br> para Doença Avançada por  HIV durante o mês</span>
                         </div>
                         <input type="number" min="0" data-total="l1-c1-a-c8" data-totaloutput="l1-c9" class="--border-l-thick --border-r  --border-b ficha__header__col--margin-l">
@@ -706,7 +729,7 @@
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-malaria/index.html class="footer__nav__link">Totalizador de Resumo Mensal de Malária</a></li>
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-ccd/index.html class="footer__nav__link">Totalizador de Resumo Mensal de CCD</a></li>
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-saaj/index.html class="footer__nav__link">Totalizador de Resumo Mensal de SAAJ</a></li>
-                        <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-doenca-avancada-por-hiv/index.html class="footer__nav__link">Totalizador de Resumo Mensal de Doença Avançada por HIV</a></li>
+                        <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-hiv-e-sida/index.html class="footer__nav__link">Totalizador de Resumo Mensal de HIV/SIDA</a></li>
                         <li><a href=https://quinamine.github.io/totalizador-de-resumo-mensal-de-consultas/index.html class="footer__nav__link">Totalizador de Resumo Mensal de Consultas</a></li>
                         <li><a href=https://quinamine.github.io/tarv-pediatrico/index.html class="footer__nav__link">TARV Pediátrico - Doseador de ARVs, CTZ, INH, 3HP e Lfx</a></li>
                         <li><a href=https://quinamine.github.io/calculadora-de-doses-pediatricas/index.html class="footer__nav__link">Calculadora de Doses Pediátricas</a></li>

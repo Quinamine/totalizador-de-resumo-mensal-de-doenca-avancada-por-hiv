@@ -91,6 +91,7 @@
 .ficha__body__row {
     display: grid;
     grid-template-columns: 28px 400px calc(48px * 2 + 8px) repeat(8, 48px);
+    min-height: 36px;
 }
 .ficha__body__numero-de-linha {
     display: flex;
@@ -126,7 +127,6 @@
 }
 .ficha__body__row--seccao-3 {
     grid-template-columns: 28px 400px 56px repeat(6, 48px) 50px 46px;
-    min-height: 36px;
 }
 .ficha__header_-col-total-em-seg {
     display: grid;
