@@ -79,7 +79,7 @@ const menu = {
                 desfoqueDoFundo("focar");
             },
             confirmar() {
-                const inputsCelulares  = document.querySelectorAll(".ficha input");
+                const inputsCelulares  = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
                 const checkboxesParaInputsNaoCelulares = document.querySelectorAll("[data-for]");
                 for (let i = 0; i < inputsCelulares.length; i++) {
                     inputsCelulares[i].value = "";
