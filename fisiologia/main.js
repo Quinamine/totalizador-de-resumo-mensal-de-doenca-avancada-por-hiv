@@ -27,6 +27,18 @@ const totalizador = {
         let operandos = document.querySelectorAll(`.${classNameDosOperandos}`);
         let celulaDeSaida = document.querySelector(`.${inputTarget.dataset.totaloutput}`);
         celulaDeSaida.value = this.somar(operandos);
+        if(inputTarget.dataset.totall5) {
+            classNameDosOperandos = inputTarget.dataset.totall5;
+            inputTarget.classList.add(`${classNameDosOperandos}`); 
+            celulaDeSaida = document.querySelector(`.${inputTarget.dataset.totall5output}`);
+            celulaDeSaida.value = this.calcularTotalDaLinha5(classNameDosOperandos);
+        }
+        if(inputTarget.dataset.totalgerall5) {
+            classNameDosOperandos = inputTarget.dataset.totalgerall5;
+            inputTarget.classList.add(`${classNameDosOperandos}`); 
+            celulaDeSaida = document.querySelector(`.${inputTarget.dataset.totalgerall5output}`);
+            celulaDeSaida.value = this.calcularTotalDaLinha5(classNameDosOperandos);
+        }
     },
     somar(celulasPorTotalizar) {
         let soma = 0;
@@ -35,6 +47,15 @@ const totalizador = {
         }
         return soma;
     },
+    calcularTotalDaLinha5(classNameDosOperandos) {
+        let classNameDoOperandoL4 = classNameDosOperandos.split("-menos-")[1];
+        let l4 = document.querySelector(`.${classNameDoOperandoL4}`);
+        let operandos = document.querySelectorAll(`.${classNameDosOperandos}`);
+        let somaL0aL3 = this.somar(operandos);
+        let totalL5 = somaL0aL3 - l4.value * 2;
+        return totalL5;
+        
+    }
 }
 function escutarEventos() {
     const inputsCelulares = document.querySelectorAll("[data-total]");
