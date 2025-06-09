@@ -97,6 +97,43 @@ function omitirLinkDesteServicoNoRodape(){
         }
     }
 }
+const Tooltip = {
+    mostrar(tooltip) {
+        tooltip.classList.add("--show");
+    },
+    omitir(tooltip) {
+        tooltip.classList.remove("--show");
+    }
+}
+function preencherCelulasVaziasComTraco(){
+    const celulas = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
+    const btnAtalhoVazioIgualZero = document.querySelector(".main__btn-fixed--emptycell-equals-zero");
+    btnAtalhoVazioIgualZero.addEventListener("click", () => {
+        let celulasVazias = 0;
+        for(const c of celulas) {
+            if(c.value.length < 1) {
+                c.type = "text"
+                c.value = "-";
+                c.removeAttribute("min");
+                c.classList.add("input--text-center");
+                celulasVazias++;
+            }
+        }
+        if(celulasVazias > 0) localStorage.setItem(`${keyPrefix}-vazio=zero`, true);
+        let msgTrechoSingular = "célula vazia preenchida";
+        let msgTrechoPlurar = "células vazias preenchidas";
+        let msgDeAlertaDefinitiva = celulasVazias === 1 ? `${celulasVazias} ${msgTrechoSingular}.`: `${celulasVazias} ${msgTrechoPlurar}.`;
+        alertarSobre(msgDeAlertaDefinitiva);
+    });
+    for(const c of celulas) {
+        if(localStorage.getItem(`${keyPrefix}-vazio=zero`) && c.value.length < 1) {
+            c.type = "text";
+            c.value = "-";
+            c.removeAttribute("min");
+            c.classList.add("input--text-center");
+        }
+    }
+}
 let btnAutoCloseLoop;
 window.addEventListener("load", () => {
     const readonlyInputs = document.querySelectorAll("[readonly]");
@@ -138,4 +175,43 @@ window.addEventListener("load", () => {
     inputObs.addEventListener("focus", () => inputObs.parentElement.classList.add("--focus"));
     inputObs.addEventListener("focusout", () => inputObs.parentElement.classList.remove("--focus"));
     omitirLinkDesteServicoNoRodape();
+    // Toolstips
+    const tooltipVazioIgualZero = document.querySelector(".tooltip--vazioigualzero");
+    const tooltipMenuAjuda = document.querySelector(".tooltip--menu-ajuda");
+    const menuOptionsContainer = document.querySelector(".header__menu__ul");
+    dialogBoxAQD__btn.addEventListener("click", () => {
+        setTimeout(() => {Tooltip.mostrar(tooltipVazioIgualZero);}, 1500);
+        setTimeout(() => {Tooltip.omitir(tooltipVazioIgualZero);}, 8500);
+        setTimeout(() => {
+            Tooltip.mostrar(tooltipMenuAjuda);
+            document.body.scrollIntoView();
+            if(window.innerWidth < 510) {
+                const btnMenuAjuda = document.querySelector(".header__menu__btn--ajuda").parentElement;
+                let cssValueForPropertyRight = btnMenuAjuda.clientWidth / 2 - 14;
+                tooltipMenuAjuda.style.cssText = `right: calc(0px + ${cssValueForPropertyRight}px);`;
+                menuOptionsContainer.scrollBy({left: 509, behavior: 'smooth'});
+                menuOptionsContainer.classList.add("body--overflow-h");
+            }
+        }, 9500);
+        setTimeout(() => {
+            Tooltip.omitir(tooltipMenuAjuda);
+            menuOptionsContainer.classList.remove("--overflow-h");
+        }, 17500);
+    });
+    const btnAtalhoVazioIgualZero = document.querySelector(".main__btn-fixed--emptycell-equals-zero");
+    if(window.innerWidth > 1024) {
+        btnAtalhoVazioIgualZero.addEventListener("mouseover", () => Tooltip.mostrar(tooltipVazioIgualZero));
+        btnAtalhoVazioIgualZero.addEventListener("mouseleave", () => Tooltip.omitir(tooltipVazioIgualZero));
+    }
+    preencherCelulasVaziasComTraco();
+    const btnConfirmarEsvaziarFicha = document.querySelector(".dialog-box-esvaziar-ficha__btn--confirmar");
+    const allInputCells = document.querySelectorAll("[data-total], .input-celular--focus, [readonly]");
+    btnConfirmarEsvaziarFicha.addEventListener("click", () => {
+        localStorage.removeItem(`${keyPrefix}-vazio=zero`);
+        for(const c of allInputCells) {
+            c.type = "number";
+            c.setAttribute("min", "0");
+            c.classList.remove("input--text-center");
+        }
+    });
 });

@@ -80,3 +80,6 @@ img {
     background-color: var(--blue--cobalt);
     color: var(--yt)
 }
+abbr {
+    text-decoration: none;
+}

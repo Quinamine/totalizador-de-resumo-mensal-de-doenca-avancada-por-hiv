@@ -174,6 +174,9 @@
 .input--font-small {
     font-size: 12px;
 }
+.input--text-center {
+    text-align: center;
+}
 .ficha__rodape {
     width: 100%;
     display: flex;
