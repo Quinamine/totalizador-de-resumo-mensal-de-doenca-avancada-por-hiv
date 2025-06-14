@@ -52,7 +52,9 @@ const totalizador = {
         let l4 = document.querySelector(`.${classNameDoOperandoL4}`);
         let operandos = document.querySelectorAll(`.${classNameDosOperandos}`);
         let somaL0aL3 = this.somar(operandos);
-        let totalL5 = somaL0aL3 - l4.value * 2;
+        let l4Value = l4.value;
+        if(l4Value === "-") l4Value = 0;
+        let totalL5 = somaL0aL3 - l4Value * 2;
         return totalL5;
         
     }

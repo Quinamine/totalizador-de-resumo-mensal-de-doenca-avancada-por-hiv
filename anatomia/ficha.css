@@ -65,7 +65,7 @@
         background-color: var(--yt);
         z-index: 333;
     }
-    .body-com-topo-propaganda .ficha__body__header {
+    .body-com-topo-info .ficha__body__header {
         top: 36px;
     }
 }
@@ -141,7 +141,7 @@
     padding: 2px 4px;
 }
 .--destaque-padrao {
-    background-color: var(--gray--c);
+    background-color: var(--gray-c);
 }
 [data-total]:focus,
 .input-celular--focus:focus,
@@ -168,8 +168,8 @@
     color: var(--yt);
 }
 .input-celular--nao-aplicavel {
-    background-color: var(--fullblack) !important;
-    color: var(--fullblack);
+    background-color: var(--black) !important;
+    color: var(--black);
 }
 .input--font-small {
     font-size: 12px;

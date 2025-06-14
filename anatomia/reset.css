@@ -77,7 +77,7 @@ img {
     max-width: 100%;
 }
 ::selection {
-    background-color: var(--blue--cobalt);
+    background-color: var(--blue-cobalt);
     color: var(--yt)
 }
 abbr {
