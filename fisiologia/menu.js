@@ -191,14 +191,17 @@ function eventos() {
     const btnAbrirAjuda = document.querySelector(".header__menu__btn--ajuda");
     btnAbrirAjuda.addEventListener("click", () => menu.abrirArtigo("ajuda"));
     const btnFecharAjuda = document.querySelector(".artigo__btn-x--fechar-ajuda")
-    btnFecharAjuda.addEventListener("click", () => menu.fecharArtigo("ajuda"));
+    btnFecharAjuda.addEventListener("click", () => {
+        menu.fecharArtigo("ajuda");
+        removerBordaDoMovitoDeRedCells();
+    });
     // PARTILHAR 
     const data = {
         title: "Totalizador de Resumo Mensal de Doença Avançada por HIV",
         text: "Totaliza automaticamente, com base nos dados inseridos pelo usuário, o resumo mensal de Doença Avançada por HIV. Foi desenvolvido de acordo com o modelo da respectiva ficha de resumo mensal actualmente vigente no Serviço Nacional de Saúde em Moçambique.",
         url: "https://quinamine.github.io/totalizador-de-resumo-mensal-de-doenca-avancada-por-hiv/index.html"
     }
-    const btnPartilhar = document.querySelector(".main__btn-fixed");
+    const btnPartilhar = document.querySelector(".main__btn-fixed--share");
     btnPartilhar.addEventListener("click", () => {
         try {
             navigator.share(data).then(()=>console.log("Totalizador partilhado com sucesso."))
