@@ -2,7 +2,7 @@
 
 ![Trecho do Totalizador do Resumo Mensal de Doença Avançada por HIV](imagens/totalizador-de-resumo-mensal-de-doenca-avancada-por-hiv.png)
 
-O **Totalizador de Resumo Mensal de Doença Avançada por HIV** é um serviço online gratuito que auxilia na elaboração, como o nome sugere, do resumo mensal de Doença Avançada por HIV por meio do cálculo automático dos totais com base nos dados inseridos pelo usuário. Foi desenvolvido de acordo com o modelo da ficha de resumo mensal de Doença Avançada por HIV actualmente vigente no Serviço Nacional de Saúde em Moçambique.
+O **Totalizador de Resumo Mensal de Doença Avançada por HIV** é um serviço online gratuito, que auxilia na elaboração, como o nome sugere, do resumo mensal de Doença Avançada por HIV por meio do cálculo automático dos totais com base nos dados inseridos pelo usuário. Foi desenvolvido de acordo com o modelo da ficha de resumo mensal de Doença Avançada por HIV actualmente vigente no Serviço Nacional de Saúde em Moçambique.
 
 
 ## Objectivos
